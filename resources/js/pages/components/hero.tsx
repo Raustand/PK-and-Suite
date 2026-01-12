@@ -1,9 +1,38 @@
-import React from "react";
-import { Link } from 'react-router-dom';
-import bgImage from "../../assets/hero-bg.jpg";
-import Button from 'react-bootstrap/Button';
+import React, { useState, useMemo } from "react";
+import { router } from '@inertiajs/react';
 
 const HeroSection: React.FC = () => {
+  const [checkIn, setCheckIn] = useState('');
+  const [checkOut, setCheckOut] = useState('');
+  const [rooms, setRooms] = useState(1);
+
+  // Calculate minimum dates once and memoize
+  const minCheckInDate = useMemo(() => {
+    return new Date().toISOString().split('T')[0];
+  }, []);
+
+  const minCheckOutDate = useMemo(() => {
+    return checkIn || new Date().toISOString().split('T')[0];
+  }, [checkIn]);
+
+  const handleCheckAvailability = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Validate that checkout is after checkin
+    if (checkIn && checkOut && checkOut <= checkIn) {
+      alert('Check-out date must be after check-in date');
+      return;
+    }
+    
+    // Navigate to rooms page using Inertia router with query parameters
+    router.get('/ourrooms', { 
+      filterAvailability: 'available',
+      checkIn: checkIn,
+      checkOut: checkOut,
+      roomsNeeded: rooms
+    });
+  };
+
   return (
     <>
       <section 
@@ -15,7 +44,8 @@ const HeroSection: React.FC = () => {
           height: '10vh',
           backgroundPosition: 'center',
           backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat'
+          backgroundRepeat: 'no-repeat' 
+          
         }}
       >
         {/* Dark overlay for text visibility */}
@@ -29,25 +59,55 @@ const HeroSection: React.FC = () => {
           <h1 className="warm_welcome text-5xl md:text-7xl font-bold mb-4">
             Welcome to P-K Hotel &amp; Suite, where comfort meets elegance.
           </h1>
-
-          {/* Booking form box */}
-          <div className="bg-gray-100 bg-opacity-90 p-6 rounded-lg shadow-xl w-full max-w-4xl">
+          
+          <form onSubmit={handleCheckAvailability} className="bg-gray-100 bg-opacity-90 p-6 rounded-lg shadow-xl w-full max-w-4xl">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
               <div className="flex flex-col items-start text-gray-600">
                 <label className="text-gray-800 font-medium mb-1" htmlFor="check-in">Check-in</label>
-                <input className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" id="check-in" type="date" />
+                <input 
+                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" 
+                  id="check-in" 
+                  type="date" 
+                  value={checkIn}
+                  onChange={(e) => setCheckIn(e.target.value)}
+                  required
+                  min={minCheckInDate}
+                />
               </div>
               <div className="flex flex-col items-start text-gray-600">
                 <label className="text-gray-800 font-medium mb-1" htmlFor="check-out">Check-out</label>
-                <input className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" id="check-out" type="date" />
+                <input 
+                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" 
+                  id="check-out" 
+                  type="date" 
+                  value={checkOut}
+                  onChange={(e) => setCheckOut(e.target.value)}
+                  required
+                  min={minCheckOutDate}
+                />
               </div>
               <div className="flex flex-col items-start text-gray-600">
                 <label className="text-gray-800 font-medium mb-1" htmlFor="rooms">Rooms</label>
-                <input className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" id="rooms" min={1} type="number" defaultValue={1} />
+                <input 
+                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" 
+                  id="rooms" 
+                  min="1" 
+                  max="10"
+                  type="number" 
+                  value={rooms}
+                  onChange={(e) => setRooms(Math.max(1, Math.min(10, parseInt(e.target.value) || 1)))}
+                />
               </div>
-              <Button className="bg-indigo-600  text-decoration-none  text-white font-semibold py-3 px-6 rounded-md hover:bg-indigo-300 transition w-full text-center" href="/" variant="primary">Check Availability</Button>
+              <button 
+                type="submit"
+                className="bg-indigo-600 text-white font-semibold py-3 px-6 rounded-md hover:bg-indigo-700 transition w-full text-center"
+              >
+                Check Availability
+              </button>
             </div>
-          </div>
+          </form>
+
+          
         </div>
       </section>
     </>
@@ -55,3 +115,4 @@ const HeroSection: React.FC = () => {
 };
 
 export default HeroSection;
+

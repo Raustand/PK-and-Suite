@@ -1,10 +1,13 @@
 <?php
 
+use App\Http\Controllers\RoomsController;
+use App\Http\Controllers\StaffController;
+use App\Models\Rooms;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Laravel\Fortify\Features;
 
-Route::get('/signin', function () {
+Route::get('/login', function () {
     return Inertia::render('auth/login', [
         'canRegister' => Features::enabled(Features::registration()),
     ]);
@@ -15,14 +18,34 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return Inertia::render('dashboard');
     })->name('dashboard');
 
-Route::get('/admin',function(){
-     return Inertia::render('dashboard');
-})->name('admin');
+Route::resource('rooms',RoomsController::class);
+
+Route::resource('staff',StaffController::class);
+
+
+
 });
+
+
+
+// Route::get('/admin',function(){
+//      return Inertia::render('dashboard');
+// })->name('admin');
+// Route::get('/staff',function(){
+//      return Inertia::render('staff');
+// })->name('staff');
+
+// Route::get('/reservation',function(){
+//      return Inertia::render('reservation');
+// })->name('reservation');
+
 
 
 require __DIR__.'/settings.php';
 
+// Route::get('/newadmin',function(){
+//      return Inertia::render('public/register');
+// })->name('newadmin');
 
 // Route::get('/', function () {
 //     return Inertia::render('dashboard');
@@ -40,9 +63,9 @@ Route::get('/services',function(){
      return Inertia::render('public/services');
 })->name('services');
 
-Route::get('/rooms',function(){
-     return Inertia::render('public/rooms');
-})->name('rooms');
+Route::get('/ourrooms',function(){
+     return Inertia::render('public/roomss');
+})->name('roomss');
 
 Route::get('/gallery',function(){
      return Inertia::render('public/gallery');

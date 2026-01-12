@@ -34,7 +34,7 @@ const ContactUs = () => {
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700" htmlFor="message">Message</label>
-                <textarea className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" id="message" name="message" placeholder="Your message..." rows="4"></textarea>
+                <textarea className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" id="message" name="message" placeholder="Your message..." rows={4}></textarea>
               </div>
               <div>
                 <button className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" type="submit">
@@ -89,7 +89,7 @@ const ContactUs = () => {
           <div className="bg-white p-6 rounded-lg shadow-md">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0 md:space-x-4">
               <div className="flex items-center">
-                {/* <span className="material-icons text-gray-500 mr-2">location_on</span> */}
+                {/* <span  className="material-icons text-gray-500 mr-2">location_on</span> */}
                 <p className="text-gray-800"><span className="font-semibold">Address:</span> Deido-Bessengue, Douala, Cameroon</p>
               </div>
               <div className="flex items-center">
@@ -98,7 +98,7 @@ const ContactUs = () => {
               </div>
             </div>
             <div className="mt-6 rounded-lg overflow-hidden">
-              <iframe alt="Map showing the location of the office" className="w-full h-80 object-cover" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15919.413275339559!2d9.707000337445606!3d4.050327935777402!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10611287df82683d%3A0x5bfec7a0465c2d93!2sBessengue%2C%20Douala!5e0!3m2!1sen!2scm!4v1751364190800!5m2!1sen!2scm" />
+              <iframe title="Map showing the location of the office" className="w-full h-80 object-cover" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15919.413275339559!2d9.707000337445606!3d4.050327935777402!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10611287df82683d%3A0x5bfec7a0465c2d93!2sBessengue%2C%20Douala!5e0!3m2!1sen!2scm!4v1751364190800!5m2!1sen!2scm" />
             </div>
           </div>
         </section>

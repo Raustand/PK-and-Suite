@@ -49,4 +49,15 @@ class User extends Authenticatable
             'two_factor_confirmed_at' => 'datetime',
         ];
     }
+
+    public function rooms()
+    {
+        return $this->hasMany(Rooms::class);
+    }
+
+    public function staff()
+    {
+        return $this->hasMany(Staff::class);
+    }
+
 }

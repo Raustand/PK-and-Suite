@@ -23,6 +23,8 @@ const Footer = () => {
               Trusted in more than 100 countries & 5 million customers. Have any
               query? contact us we are here for you.
             </p>
+            <iframe title="Map showing the location of the office" className="w-full h-40 object-cover" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15919.413275339559!2d9.707000337445606!3d4.050327935777402!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10611287df82683d%3A0x5bfec7a0465c2d93!2sBessengue%2C%20Douala!5e0!3m2!1sen!2scm!4v1751364190800!5m2!1sen!2scm" />
+
           </div>
 
           <div className="nav-white mr-8 text-decoration-none space-y-4 ">
@@ -38,10 +40,17 @@ const Footer = () => {
             <h3 className="text-lg font-bold">Get In Touch</h3>
             <div className="space-y-2 text-sm">
               <p>hotel@pagedone.com</p>
-              <p>+91 945 658 3256</p>
-              <p> Douala, Cameroon.</p>
+              <p>+1 945 658 3256</p>
+              <p>+237 656183965</p>
             </div>
           </div>
+
+          {/* <div className="space-y-4">
+            <h3 className="text-lg font-bold">Our location</h3>
+            <div className="space-y-2 text-sm">
+              <p>Feux-rouge Bessengue</p>
+            </div>
+          </div> */}
 
           <div className="space-y-4">
             <h3 className="text-lg font-bold">Newsletter</h3>

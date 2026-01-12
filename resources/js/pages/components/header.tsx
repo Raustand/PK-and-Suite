@@ -30,7 +30,7 @@ const Header = () => {
           <Link href="/" prefetch className="nav-link text-decoration-none">Home</Link>
           <Link href="/aboutus" prefetch className="nav-link text-decoration-none">About us</Link>
           <Link href="/services" prefetch className="nav-link text-decoration-none">Services</Link>
-          <Link href="/rooms" prefetch className="nav-link text-decoration-none">Rooms</Link>
+          <Link href="/ourrooms" prefetch className="nav-link text-decoration-none">Rooms</Link>
           <Link href="/gallery" prefetch className="nav-link text-decoration-none">Gallery</Link>
           <Link href="/contactus" prefetch className="nav-link text-decoration-none">Contact Us</Link>
           <Link href="/login" prefetch className="nav-link text-decoration-none">Admin</Link>
